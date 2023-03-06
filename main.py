@@ -10,6 +10,7 @@ BOTTOM_WALL = -280
 LEFT_WALL = -280
 
 screen = Screen()
+screen.setup(600, 600)
 screen.screensize(600, 600)
 screen.bgcolor("Black")
 screen.title("Snake Game")
@@ -44,12 +45,12 @@ while not end_of_game:
 
   # detect collision with wall
   if snake.head.xcor() > RIGHT_WALL or snake.head.xcor() < LEFT_WALL or snake.head.ycor() < BOTTOM_WALL or snake.head.ycor() > TOP_WALL:
-    end_of_game = True
-    score.game_over()
+    score.reset_game()
+    snake.reset_snake()
     
     
   # detect collision with tail
   for segment in snake.snakes_list[1:]:
    if snake.head.distance(segment) < 10:
-      end_of_game = True
-      score.game_over()
+      score.reset_game()
+      snake.reset_snake()
